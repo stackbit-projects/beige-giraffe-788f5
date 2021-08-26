@@ -1,0 +1,349 @@
+stackbitVersion: ~0.3.0
+ssgName: nextjs
+nodeVersion: '14'
+publishDir: out
+dataDir: ''
+pagesDir: framework/commerce
+models:
+  commerce:
+    type: page
+    label: Commerce
+    match: '*'
+    fields: []
+  seo:
+    type: data
+    label: Seo
+    file: config/seo.json
+    fields:
+      - type: string
+        name: title
+        label: Title
+      - type: string
+        name: titleTemplate
+        label: Title Template
+      - type: string
+        name: description
+        label: Description
+      - type: object
+        name: openGraph
+        label: Open Graph
+        fields:
+          - type: string
+            name: title
+            label: Title
+          - type: string
+            name: description
+            label: Description
+          - type: string
+            name: type
+            label: Type
+          - type: string
+            name: locale
+            label: Locale
+          - type: string
+            name: url
+            label: Url
+          - type: string
+            name: site_name
+            label: Site Name
+          - type: list
+            name: images
+            label: Images
+            items:
+              type: object
+              fields:
+                - type: image
+                  name: url
+                  label: Url
+                - type: number
+                  name: width
+                  label: Width
+                  subtype: int
+                - type: number
+                  name: height
+                  label: Height
+                  subtype: int
+                - type: string
+                  name: alt
+                  label: Alt
+      - type: object
+        name: twitter
+        label: Twitter
+        fields:
+          - type: string
+            name: handle
+            label: Handle
+          - type: string
+            name: site
+            label: Site
+          - type: string
+            name: cardType
+            label: Card Type
+  data:
+    type: data
+    label: Data
+    file: framework/local/data.json
+    fields:
+      - type: list
+        name: products
+        label: Products
+        items:
+          type: object
+          fields:
+            - type: string
+              name: id
+              label: Id
+            - type: string
+              name: name
+              label: Name
+            - type: string
+              name: vendor
+              label: Vendor
+            - type: string
+              name: path
+              label: Path
+            - type: string
+              name: slug
+              label: Slug
+            - type: object
+              name: price
+              label: Price
+              fields:
+                - type: number
+                  name: value
+                  label: Value
+                  subtype: float
+                - type: string
+                  name: currencyCode
+                  label: Currency Code
+            - type: markdown
+              name: descriptionHtml
+              label: Description Html
+            - type: list
+              name: images
+              label: Images
+              items:
+                type: object
+                fields:
+                  - type: image
+                    name: url
+                    label: Url
+                  - type: string
+                    name: altText
+                    label: Alt Text
+                  - type: number
+                    name: width
+                    label: Width
+                    subtype: int
+                  - type: number
+                    name: height
+                    label: Height
+                    subtype: int
+            - type: list
+              name: variants
+              label: Variants
+              items:
+                type: object
+                fields:
+                  - type: string
+                    name: id
+                    label: Id
+                  - type: list
+                    name: options
+                    label: Options
+                    items:
+                      type: object
+                      fields:
+                        - type: string
+                          name: __typename
+                          label: Typename
+                        - type: string
+                          name: id
+                          label: Id
+                        - type: string
+                          name: displayName
+                          label: Display Name
+                        - type: list
+                          name: values
+                          label: Values
+                          items:
+                            type: object
+                            fields:
+                              - type: string
+                                name: label
+                                label: Label
+            - type: list
+              name: options
+              label: Options
+              items:
+                type: object
+                fields:
+                  - type: string
+                    name: id
+                    label: Id
+                  - type: string
+                    name: displayName
+                    label: Display Name
+                  - type: list
+                    name: values
+                    label: Values
+                    items:
+                      type: object
+                      fields:
+                        - type: string
+                          name: label
+                          label: Label
+                        - type: list
+                          name: hexColors
+                          label: Hex Colors
+                          items:
+                            type: string
+  framework:
+    type: data
+    label: Framework
+    folder: framework
+    fields:
+      - type: list
+        name: documents
+        label: Documents
+        items:
+          type: model
+          models:
+            - object_cggsa5rht0
+            - object_u4lpmfpjh2
+      - type: object
+        name: generates
+        label: Generates
+        fields:
+          - type: object
+            name: ./framework/vendure/schema.d.ts
+            label: Framework Vendure Schema D Ts
+            fields:
+              - type: list
+                name: plugins
+                label: Plugins
+                items:
+                  type: string
+              - type: object
+                name: config
+                label: Config
+                fields:
+                  - type: object
+                    name: scalars
+                    label: Scalars
+                    fields:
+                      - type: string
+                        name: ID
+                        label: ID
+          - type: object
+            name: ./framework/vendure/schema.graphql
+            label: Framework Vendure Schema Graphql
+            fields:
+              - type: list
+                name: plugins
+                label: Plugins
+                items:
+                  type: string
+          - type: object
+            name: ./framework/shopify/schema.d.ts
+            label: Framework Shopify Schema D Ts
+            fields:
+              - type: list
+                name: plugins
+                label: Plugins
+                items:
+                  type: string
+              - type: object
+                name: config
+                label: Config
+                fields:
+                  - type: object
+                    name: scalars
+                    label: Scalars
+                    fields:
+                      - type: string
+                        name: ID
+                        label: ID
+          - type: object
+            name: ./framework/shopify/schema.graphql
+            label: Framework Shopify Schema Graphql
+            fields:
+              - type: list
+                name: plugins
+                label: Plugins
+                items:
+                  type: string
+      - type: object
+        name: hooks
+        label: Hooks
+        fields:
+          - type: list
+            name: afterAllFileWrite
+            label: After All File Write
+            items:
+              type: string
+      - type: object
+        name: schema
+        label: Schema
+        fields:
+          - type: object
+            name: >-
+              https://${NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN}/api/2021-07/graphql.json
+            label: Https NEXT PUBLIC SHOPIFY STORE DOMAIN Api 2021 07 Graphql Json
+            fields:
+              - type: object
+                name: headers
+                label: Headers
+                fields:
+                  - type: string
+                    name: X-Shopify-Storefront-Access-Token
+                    label: X Shopify Storefront Access Token
+  framework_1:
+    type: data
+    label: Framework 1
+    folder: framework
+    fields:
+      - type: string
+        name: provider
+        label: Provider
+      - type: object
+        name: features
+        label: Features
+        fields:
+          - type: boolean
+            name: wishlist
+            label: Wishlist
+          - type: boolean
+            name: customCheckout
+            label: Custom Checkout
+          - type: boolean
+            name: cart
+            label: Cart
+          - type: boolean
+            name: search
+            label: Search
+          - type: boolean
+            name: customerAuth
+            label: Customer Auth
+  object_cggsa5rht0:
+    type: object
+    label: Object 1
+    fields:
+      - type: object
+        name: './framework/vendure/**/*.{ts,tsx}'
+        label: Framework Vendure Ts Tsx
+        fields:
+          - type: boolean
+            name: noRequire
+            label: No Require
+  object_u4lpmfpjh2:
+    type: object
+    label: Object 2
+    fields:
+      - type: object
+        name: './framework/shopify/**/*.{ts,tsx}'
+        label: Framework Shopify Ts Tsx
+        fields:
+          - type: boolean
+            name: noRequire
+            label: No Require
